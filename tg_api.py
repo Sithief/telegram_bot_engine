@@ -19,7 +19,7 @@ class TgApi:
                 logging.debug(f'api: method: {method}, params: {parameters}, response: {response_json}')
                 return response_json
             else:
-                logging.error(f'connection status code = {response.status_code}')
+                logging.error(f'connection status code = {response.status_code}, url: {self.url + method}')
         except requests.exceptions.RequestException as error_msg:
             logging.error(f'connection problems {error_msg}')
             time.sleep(1)
