@@ -45,16 +45,19 @@ def read_config():
     is_prod = os.environ.get('ENVIRON', None)
     if is_prod:
         CONF = {'token': os.environ.get('TOKEN'),
-                'DB_url': os.environ.get('DATABASE_URL')}
+                'DB_url': os.environ.get('DATABASE_URL'),
+                'server_url': os.environ.get('SERVER_URL')}
     else:
         conf = configparser.ConfigParser()
         if conf.read(conf_path, encoding='utf-8'):
             CONF = {'token': conf.get('TG', 'token'),
-                    'DB_url': conf.get('DB', 'url')}
+                    'DB_url': conf.get('DB', 'url'),
+                    'server_url': conf.get('SERVER', 'url')}
 
         else:
             conf['TG'] = {'token': ''}
             conf['DB'] = {'url': ''}
+            conf['SERVER'] = {'url': ''}
             with open(conf_path, 'w', encoding='utf-8') as configfile:
                 conf.write(configfile)
             exit(0)
