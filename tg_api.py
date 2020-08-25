@@ -28,3 +28,10 @@ class TgApi:
         except Exception as error_msg:
             logging.error(f'{error_msg}')
             return {}
+
+    def msg_send(self, chat_id, text):
+        return self.request_get('sendMessage', {'chat_id': chat_id, 'text': text})
+
+    def send_photo(self, chat_id, photo_url=None, photo_file=None, caption=''):
+        if photo_url:
+            return self.request_get('sendPhoto', {'chat_id': chat_id, 'caption': caption, 'photo': photo_url})

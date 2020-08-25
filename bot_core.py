@@ -9,6 +9,9 @@ uptime = time.time()
 def tg_callback():
     content = request.get_json(force=True)
     print('content', content)
+    # bot_api.msg_send(content['message']['from']['id'], 'привет')
+    bot_api.send_photo(chat_id=content['message']['from']['id'],
+                       photo_url='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwW1ni-5CMPTm8X3jeu9ccG7qRlHb_-oYECjyuRs_0CffKVGDl&s')
     return 'Ok'
 
 
