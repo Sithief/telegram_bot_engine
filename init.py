@@ -7,6 +7,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 import traceback
 import tg_api
+import bot_routes
 
 
 base_path = os.path.dirname(os.path.abspath(__file__))
@@ -70,6 +71,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 
 bot_api = tg_api.TgApi(CONF.get('token'))
+bot_app = bot_routes.Bot()
 
 init_logging()
 sys.excepthook = logging_excepthook
