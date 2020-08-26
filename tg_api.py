@@ -29,9 +29,14 @@ class TgApi:
             logging.error(f'{error_msg}')
             return {}
 
-    def msg_send(self, chat_id, text):
-        return self.request_get('sendMessage', {'chat_id': chat_id, 'text': text})
+    def msg_send(self, chat_id, text, reply_markup):
+        return self.request_get('sendMessage', {'chat_id': chat_id,
+                                                'text': text,
+                                                'reply_markup': reply_markup})
 
-    def send_photo(self, chat_id, photo_url=None, photo_file=None, caption=''):
+    def send_photo(self, chat_id, photo_url=None, photo_file=None, caption='', reply_markup=None):
         if photo_url:
-            return self.request_get('sendPhoto', {'chat_id': chat_id, 'caption': caption, 'photo': photo_url})
+            return self.request_get('sendPhoto', {'chat_id': chat_id,
+                                                  'caption': caption,
+                                                  'photo': photo_url,
+                                                  'reply_markup': reply_markup})

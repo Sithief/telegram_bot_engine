@@ -5,9 +5,14 @@ from init import *
 uptime = time.time()
 
 
-def message_processing(msg):
-    menu_function = bot_app.serve('test')
-    menu_function(msg)
+def message_processing(content):
+    if 'message' in content:
+        menu_function = bot_app.serve('text')
+    elif 'callback_query' in content:
+        menu_function = bot_app.serve('callback')
+    else:
+        menu_function = bot_app.serve('other')
+    menu_function(content)
 
 
 @app.route('/tg_callback/', methods=['POST'])
