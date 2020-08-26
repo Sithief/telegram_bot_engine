@@ -21,7 +21,8 @@ def init_logging():
         os.makedirs(log_path)
     handler = RotatingFileHandler(os.path.join(log_path, 'bot_log.log'),
                                   maxBytes=100000,
-                                  backupCount=10)
+                                  backupCount=10,
+                                  encoding='utf-8')
     console_handler = logging.StreamHandler()
     logging.basicConfig(
         handlers=[handler, console_handler],

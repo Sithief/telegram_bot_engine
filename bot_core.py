@@ -12,13 +12,14 @@ def message_processing(content):
         menu_function = bot_app.serve('callback')
     else:
         menu_function = bot_app.serve('other')
-    menu_function(content)
+    if menu_function:
+        menu_function(content)
 
 
 @app.route('/tg_callback/', methods=['POST'])
 def tg_callback():
     content = request.get_json(force=True)
-    print('content', content)
+    logging.debug(f'flask content {content}')
     message_processing(content)
     return 'Ok'
 
