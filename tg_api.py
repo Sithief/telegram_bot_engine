@@ -29,7 +29,7 @@ class TgApi:
             logging.error(f'{error_msg}')
             return {}
 
-    def msg_send(self, chat_id, text, reply_markup):
+    def msg_send(self, chat_id, text, reply_markup=''):
         return self.request_get('sendMessage', {'chat_id': chat_id,
                                                 'text': text,
                                                 'reply_markup': reply_markup})
