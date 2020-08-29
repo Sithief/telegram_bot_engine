@@ -48,13 +48,15 @@ def read_config():
     if is_prod:
         CONF = {'token': os.environ.get('TOKEN'),
                 'DB_url': os.environ.get('DATABASE_URL'),
-                'server_url': os.environ.get('SERVER_URL')}
+                'server_url': os.environ.get('SERVER_URL'),
+                'redis_url':  os.environ.get('REDIS_URL')}
     else:
         conf = configparser.ConfigParser()
         if conf.read(conf_path, encoding='utf-8'):
             CONF = {'token': conf.get('TG', 'token'),
                     'DB_url': conf.get('DB', 'url'),
-                    'server_url': conf.get('SERVER', 'url')}
+                    'server_url': conf.get('SERVER', 'url'),
+                    'redis_url': conf.get('REDIS', 'url')}
 
         else:
             conf['TG'] = {'token': ''}
